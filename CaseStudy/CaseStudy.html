@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+  <body  onkeypress="myFunction()">
+     <div id="container">
+       <label for="">Bouncing ball</label><br>
+       <input type="button" value="1 Player" onclick="startGame()"><br>
+       <input type="button"  value="2 Player" onclick="startGame1()"><br>
+
+     </div>
+    <canvas id="gameCanvas" width="800" height="500"></canvas><br>
+    <div id="player2">
+      <input type="button" class="btn btn1" onkeydown="moveup()" value="A"></input>
+      <input type="button" class="btn btn2" onkeydown="moveup()" value="D"></input>
+      <input type="button" class="btn btn3" onclick="moveup()" value="UP"></input>
+      <input type="button" class="btn btn4" onclick="moveup()" value="DOWN"></input>
+    </div>
+   
+    
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

@@ -26,9 +26,7 @@ function handleMouseClick() {
   player2.style.display = "none";
   }
 }
-
 function startGame() {
-
   check =false;
   game =true;
   canvas.style.display = "block";
@@ -41,8 +39,6 @@ function startGame() {
     if(y>=0 &&  y<= canvas.height - PADDLE_HEIGHT){
       paddle1Y = y;
     }
-    // console.log(paddle1Y,y);
-   
   });
   if (showingWinScreen) {
     Player1Score = 0;
@@ -119,15 +115,17 @@ function movedown() {
 }
 
 function ballreset() {
-  console.log("resetball");
   if (Player1Score >= WIN_SCORE || Player2Score >= WIN_SCORE) {
     showingWinScreen = true;
     game = false;
+    console.log("end");
+  }else{
+    ballX = canvas.width / 2;
+    ballY = canvas.height / 2;
+    ballSpeedX = -ballSpeedX;
+   console.log("reset");
   }
-  ballX = canvas.width / 2;
-  ballY = canvas.height / 2;
-  ballSpeedX = -defaultX;
- 
+  
 }
 
 function callBoth() {
@@ -153,24 +151,20 @@ function moveEverything() {
   computerMovement();
   ballX += ballSpeedX;
   ballY += ballSpeedY;
-  console.log( 'ballX :'+ ballX);
-  console.log('ballY :'+ ballY);
   if (ballX >= canvas.width-PADDLE_THINKNESS-13) {
-
     // ballSpeedX = -ballSpeedX;
     if (ballY > paddle2Y && ballY < paddle2Y + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
       let deltaY = ballY - (paddle2Y + PADDLE_HEIGHT / 2);
+      
       ballSpeedY = deltaY * 0.35;
+      
     } else {
-
       Player1Score++;
-    
       ballreset();
-    
     }
   }
-  if (ballX <=  PADDLE_THINKNESS+13) {
+  if (ballX <= PADDLE_THINKNESS+13) {
     // ballSpeedX = -ballSpeedX;
     if (ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
@@ -178,9 +172,7 @@ function moveEverything() {
       ballSpeedY = deltaY * 0.35;
     } else {
       Player2Score++;
-      reset();
       ballreset();
-    
     }
   }
   if (ballY >= canvas.height-10) {
@@ -199,14 +191,13 @@ function drawNet() {
 function drawEverything() {
   //create the screen
   createRect(0, 0, canvas.width, canvas.height, "black");
-
+  
   if (showingWinScreen) {
     canvasContext.fillStyle = "red";
     canvasContext.font = "40px Arial";
     canvasContext.textAlign = "center";
 
-    if (Player1Score >= WIN_SCORE) {     
- 
+    if (Player1Score >= WIN_SCORE) {      
       canvasContext.fillText(
         "Player1 Win!",
         canvas.width / 2,
@@ -222,8 +213,7 @@ function drawEverything() {
       return;
 
     }
-     else if (Player2Score >= WIN_SCORE) {   
-    
+     else if (Player2Score >= WIN_SCORE) {      
       canvasContext.fillText(
         "Player2 Win!",
         canvas.width / 2,
@@ -268,4 +258,3 @@ function createRect(leftX, topY, width, height, drawColor) {
   canvasContext.fillStyle = drawColor;
   canvasContext.fillRect(leftX, topY, width, height);
 }
-/*=============================================================================*/
